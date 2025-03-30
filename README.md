@@ -50,19 +50,7 @@ pip install -r requirements.txt
 ```
 
 ### 2. Train a LoRA Model
-
-Prepare your dataset and run:
-
-```bash
-python train_lora.py \
-  --model_name_or_path="path_to_base_model" \
-  --dataset_dir="path_to_images" \
-  --output_dir="output_lora_model" \
-  --resolution=512 \
-  --train_batch_size=4 \
-  --learning_rate=1e-4 \
-  --num_train_epochs=10
-```
+Read INSTALL.MD for more infomations. 
 
 ### 3. Run Inference with Gradio
 
