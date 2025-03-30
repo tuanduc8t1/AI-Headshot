@@ -1,4 +1,4 @@
-# Cloning and installing everything for the project
+# Quickstart
 
 ### Installation
 Clone the SimpleTuner repository and set up the python venv:
@@ -105,4 +105,11 @@ Once that is done, any of your training sessions and validation data will be ava
 sh train.sh
 ```
 
-> ⚠️ At this point, if you used `configure.py`, you are done! If not - these commands will work, but further configuration is required. See the tutorial for more information.
+> ⚠️ At this point, if you used `configure.py`, you are done! If not - these commands will work, but further configuration is required.
+
+5. Launch the website using Gradio
+```bash
+python test_result.py
+```
+
+> ⚠️ Make sure to replace the link of the default LORA to your own (load_lora_weight)
