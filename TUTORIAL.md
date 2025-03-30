@@ -1,4 +1,4 @@
-# This Tutorial is a Work-in-Progress
+# Tutorial
 
 ## Introduction
 
@@ -82,6 +82,82 @@ To automatically push your model to a remote repository after training, set thes
 ```json
 "push_to_hub": true,
 "hub_model_name": "your-model-name"
+
+````markdown
+Before training, log in using:
+
+```bash
+huggingface-cli login
+```
+
+To disable automatic checkpoint uploads, set:
+
+```json
+"push_checkpoints_to_hub": false
+```
+
+## Monitoring and Logging
+
+By default, training logs can be viewed through integrated monitoring tools. You will be prompted at startup regarding logging options.
+
+### Discord Webhook Monitoring
+
+If desired, configure Discord webhook monitoring by creating a webhook configuration file (e.g., `webhook.json`) in the project root and referencing it in your configuration. An example configuration:
+
+```json
+{
+  "webhook_url": "YOUR_DISCORD_WEBHOOK_URL",
+  "webhook_type": "discord",
+  "message_prefix": "AI-HEADSHOT",
+  "log_level": "critical"
+}
+```
+
+## Post-Training Steps
+
+### Ending Training Early
+
+If you need to stop training before it completes, reduce the `--max_train_steps` value to just below your current step. This forces an export of the pipeline to your output directory.
+
+### Testing the Model
+
+After training, test your model using the provided Gradio interface. Run the test script:
+
+```bash
+python test_result.py
+```
+
+This will launch a browser interface where you can input test data and view the model's outputs.
+
+## Debugging
+
+For increased logging during training, add the following lines to your `config/config.env`:
+
+```bash
+export SIMPLETUNER_LOG_LEVEL=INFO
+export SIMPLETUNER_TRAINING_LOOP_LOG_LEVEL=INFO
+```
+
+For even more detailed output, set the log level to `DEBUG`. A `debug.log` file will be created in the project root with all log messages.
+
+## Environment File Overview
+
+Key environment variables in `config/config.env` include:
+
+- **model_family:** Set to your model architecture (e.g., `pixart_sigma`, `flux`, `sd3`, `legacy`).
+- **data_backend_config:** Path to your data configuration file.
+- **seed:** Numeric value for reproducibility (set to -1 for complete randomness).
+- **resume_from_checkpoint:** Specify a checkpoint (use `"latest"` for the most recent).
+- **checkpointing_steps:** How often to save checkpoints.
+- **checkpoints_total_limit:** Maximum checkpoints to keep.
+- **learning_rate:** The initial learning rate (commonly between 4e-7 and 4e-6).
+- **output_dir:** Directory where model outputs are saved.
+
+Customize additional settings as needed.
+
+## Conclusion
+
+This tutorial is a simplified guide to help you set up and train a LoRA model for the AI-HEADSHOT project using SimpleTuner. It covers installation, data preparation, training, monitoring, and testing via a Gradio interface. As you become more familiar with the system, you can explore more advanced configurations and optimizations.
 
 
 
