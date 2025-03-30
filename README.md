@@ -89,4 +89,4 @@ This is an educational and experimental project. Contributions and pull requests
 
 ## 📢 License
 
-MIT License
+GNU Affero General Public License v3.0
