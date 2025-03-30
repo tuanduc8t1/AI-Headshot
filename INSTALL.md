@@ -1,4 +1,4 @@
-# Cloning and installing for the project
+# Cloning and installing everything for the project
 
 ### Installation
 Clone the SimpleTuner repository and set up the python venv:
@@ -102,39 +102,7 @@ Once that is done, any of your training sessions and validation data will be ava
 4. Launch the `train.sh` script; logs will be written to `debug.log`
 
 ```bash
-./train.sh
+sh train.sh
 ```
 
 > ⚠️ At this point, if you used `configure.py`, you are done! If not - these commands will work, but further configuration is required. See the tutorial for more information.
-
-### Run unit tests
-
-To run unit tests to ensure that installation has completed successfully:
-
-```bash
-poetry run python -m unittest discover tests/
-```
-
-## Advanced: Multiple configuration environments
-
-For users who train multiple models or need to quickly switch between different datasets or settings, two environment variables are inspected at startup.
-
-To use them:
-
-```bash
-env ENV=default CONFIG_BACKEND=env bash train.sh
-```
-
-- `ENV` will default to `default`, which points to the typical `SimpleTuner/config/` directory that this guide helped you configure
-  - Using `ENV=pixart ./train.sh` would use `SimpleTuner/config/pixart` directory to find `config.env`
-- `CONFIG_BACKEND` will default to `env`, which uses the typical `config.env` file this guide helped you configure
-  - Supported options: `env`, `json`, `toml`, or `cmd` if you rely on running `train.py` manually
-  - Using `CONFIG_BACKEND=json ./train.sh` would search for `SimpleTuner/config/config.json` instead of `config.env`
-  - Similarly, `CONFIG_BACKEND=toml` will use `config.env`
-
-You can create `config/config.env` that contains one or both of these values:
-
-```bash
-ENV=default
-CONFIG_BACKEND=json
-```
