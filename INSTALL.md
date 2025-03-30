@@ -1,8 +1,10 @@
+# Cloning and installing for the project
+
 ### Installation
 Clone the SimpleTuner repository and set up the python venv:
 
 ```bash
-git clone --branch=release https://github.com/bghira/SimpleTuner.git
+git clone https://github.com/tuanduc8t1/AI-Headshot.git
 
 cd SimpleTuner
 
