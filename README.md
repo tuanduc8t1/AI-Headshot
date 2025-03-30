@@ -42,8 +42,8 @@ This project uses **SimpleTuner** to train **LoRA (Low-Rank Adaptation)** models
 ### 1. Setup Environment
 
 ```bash
-git clone https://github.com/yourname/yourproject.git
-cd yourproject
+git clone https://github.com/tuanduc8t1/AI-Headshot.git
+cd SimpleTuner
 conda create -n simpletuner python=3.10 -y
 conda activate simpletuner
 pip install -r requirements.txt
