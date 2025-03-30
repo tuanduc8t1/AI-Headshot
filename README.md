@@ -39,8 +39,7 @@ This project uses **SimpleTuner** to train **LoRA (Low-Rank Adaptation)** models
 
 ## 🚀 Quickstart
 
-### 1. Setup Environment
-
+### 1. Setup Environment and Install all required library
 ```bash
 git clone https://github.com/tuanduc8t1/AI-Headshot.git
 cd SimpleTuner
@@ -48,7 +47,7 @@ conda create -n simpletuner python=3.10 -y
 conda activate simpletuner
 pip install -r requirements.txt
 ```
-Read INSTALL.md for more informations. 
+Read INSTALL.md for more infomations about the requirements for environment and library. 
 
 ### 2. Train a LoRA Model
 ```bash
@@ -56,14 +55,12 @@ python configure.py
 #choose parameters
 sh train.sh
 ```
-Read OPTIONS.md for more informations. 
+Read OPTIONS.md for more informations about choosing parameters. 
 
 ### 3. Run Inference with Gradio
-
 ```bash
 python test_result.py
 ```
-
 This will launch a web interface where you can generate images using your trained LoRA model.
 
 ---
