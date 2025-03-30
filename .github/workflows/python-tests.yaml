@@ -1,0 +1,35 @@
+name: Python Unit Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Maximize build space
+      uses: AdityaGarg8/remove-unwanted-software@v4.1
+      with:
+        remove-android: 'true'
+
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install Poetry
+      run: python -m pip install --upgrade pip poetry
+
+    - name: Install Dependencies
+      run: poetry -C install/apple install
+
+    - name: Run Tests
+      run: poetry -C ./ -P install/apple run python -m unittest discover tests/

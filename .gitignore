@@ -65,3 +65,8 @@ config/*.toml
 static
 templates
 api_state.json
+GFPGANv1.4.pth
+*.pth
+
+
+flux
