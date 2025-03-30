@@ -1,7 +1,7 @@
 # Quickstart
 
 ### Installation
-Clone the SimpleTuner repository and set up the python venv:
+1. Clone the SimpleTuner repository and set up the python venv:
 
 ```bash
 git clone https://github.com/tuanduc8t1/AI-Headshot.git
@@ -20,8 +20,6 @@ poetry config virtualenvs.create false
 ```
 
 > ℹ️ You can use your own custom venv path by setting `export VENV_PATH=/path/to/.venv` in your `config/config.env` file.
-
-**Note:** We're currently installing the `release` branch here; the `main` branch may contain experimental features that might have better results or lower memory use.
 
 Depending on your system, you will run one of 3 commands:
 
