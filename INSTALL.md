@@ -1,5 +1,6 @@
 ---
 title: "SimpleTuner Setup for AI-Headshot (Linux)"
+date: "2025-03-30"
 description: "Setup guide for using SimpleTuner on a Linux device to train the LORA of the flux model for the AI-Headshot project."
 tags:
   - SimpleTuner
