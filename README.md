@@ -47,7 +47,7 @@ conda create -n simpletuner python=3.10 -y
 conda activate simpletuner
 pip install -r requirements.txt
 ```
-Read INSTALL.md for more infomations about the requirements for environment and library. 
+Read INSTALL.md for more infomation. 
 
 ### 2. Train a LoRA Model
 ```bash
@@ -55,7 +55,7 @@ python configure.py
 #choose parameters
 sh train.sh
 ```
-Read OPTIONS.md for more informations about choosing parameters. 
+Read INSTALL.md and OPTIONS.md for more information.
 
 ### 3. Run Inference with Gradio
 ```bash
