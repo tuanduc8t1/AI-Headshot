@@ -1,14 +1,3 @@
----
-title: "AI-HEADSHOT LoRA Training Options (SimpleTuner)"
-date: "2025-03-30"
-description: "A simplified overview of command-line options for training a LoRA model for the AI-HEADSHOT project using SimpleTuner."
-tags:
-  - AI-HEADSHOT
-  - LoRA
-  - SimpleTuner
-  - Linux
----
-
 # AI-HEADSHOT LoRA Training Options
 
 This document provides a simplified summary of the command-line options available in SimpleTuner's `train.py` script. These options have been tailored for training a LoRA model for the AI-HEADSHOT project.
