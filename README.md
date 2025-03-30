@@ -38,7 +38,7 @@ This project uses **SimpleTuner** to train **LoRA (Low-Rank Adaptation)** models
 ---
 ## 📸 Workflow 
 
-I use ComfyUI to create the workflow of my inference
+I use ComfyUI to create the workflow of my inference<br><br>
 ![Workflow](assets/workflow.png)
 
 ---
@@ -66,9 +66,7 @@ Read QUICKSTART.md for more informations
 ```bash
 python test_result.py
 ```
-This will launch a web interface where you can generate images using your trained LoRA model
-
-
+This will launch a web interface where you can generate images using your trained LoRA model<br><br>
 ![Interface](assets/interface.png)
 
 ---
