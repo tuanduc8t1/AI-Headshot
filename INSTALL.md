@@ -1,147 +1,157 @@
-## Setup
+title: "SimpleTuner Setup for AI-Headshot (Linux)"
+date: "2025-03-30"
+description: "Setup guide for using SimpleTuner on a Linux device to train the LORA of the flux model for the AI-Headshot project."
+tags:
+  - SimpleTuner
+  - AI-Headshot
+  - Linux
+  - LORA
+  - flux model
+guide:
+  - section: "1. Repository Clone & Environment Setup"
+    content: |
+      Clone the SimpleTuner repository using the release branch:
+      ```bash
+      git clone --branch=release https://github.com/bghira/SimpleTuner.git
+      cd SimpleTuner
+      ```
 
-For users that wish to make use of Docker or another container orchestration platform, see [this document](/documentation/DOCKER.md) first.
+      Create and activate a Python virtual environment:
+      ```bash
+      python3.11 -m venv .venv
+      source .venv/bin/activate
+      ```
 
-### Installation
+      Upgrade pip and install Poetry:
+      ```bash
+      pip install -U poetry pip
+      ```
 
-For  users operating on Windows 10 or newer, an installation guide based on Docker and WSL is available here [this document](/documentation/DOCKER.md).
+      Configure Poetry to use the current virtual environment:
+      ```bash
+      poetry config virtualenvs.create false
+      ```
 
-Clone the SimpleTuner repository and set up the python venv:
+      > **Tip:** If you prefer a custom virtual environment path, add the following line to your configuration (e.g., in `config/config.env`):
+      > ```bash
+      > export VENV_PATH=/path/to/.venv
+      > ```
+  - section: "2. Installing Dependencies"
+    content: |
+      Since you’re working on Linux, install the necessary dependencies with:
+      ```bash
+      poetry install
+      ```
 
-```bash
-git clone --branch=release https://github.com/bghira/SimpleTuner.git
+      ### GPU Considerations
 
-cd SimpleTuner
+      #### AMD ROCm Users
+      For AMD GPUs (like MI300X), run:
+      ```bash
+      sudo apt install amd-smi-lib
+      pushd /opt/rocm/share/amd_smi
+        python3 -m pip install --upgrade pip
+        python3 -m pip install .
+      popd
+      ```
 
-# if python --version shows 3.11 you can just also use the 'python' command here.
-python3.11 -m venv .venv
+      #### NVIDIA Users (Optional for Hopper/Blackwell Hardware)
+      If you have NVIDIA Hopper (or newer) hardware, you can enable FlashAttention3 to boost inference and training performance:
+      ```bash
+      git clone https://github.com/Dao-AILab/flash-attention
+      pushd flash-attention
+        pushd hopper
+          python setup.py install
+        popd
+      popd
+      ```
+      
+      > **Note:** The flash-attention build is managed externally. You may need to re-run this setup when updates occur.
+  - section: "3. Configuration"
+    content: |
+      You can configure SimpleTuner in one of two ways:
 
-source .venv/bin/activate
+      ### Option 1: Automated Configuration
+      Simply run the configuration script:
+      ```bash
+      python configure.py
+      ```
 
-pip install -U poetry pip
+      ### Option 2: Manual Configuration
+      Copy the example config and update as needed:
+      ```bash
+      cp config/config.json.example config/config.json
+      ```
+      Then, edit `config/config.json` to match your AI-Headshot project settings.
 
-# Necessary on some systems to prevent it from deciding it knows better than us.
-poetry config virtualenvs.create false
-```
+      > **Important:** If you’re in a region with restricted access to the Hugging Face Hub, add this to your shell configuration (e.g., `~/.bashrc`):
+      > ```bash
+      > HF_ENDPOINT=https://hf-mirror.com
+      > ```
+  - section: "4. (Optional) Multi-GPU Training Setup"
+    content: |
+      For multi-GPU training, add the following to your `config/config.env`:
+      ```env
+      TRAINING_NUM_PROCESSES=1
+      TRAINING_NUM_MACHINES=1
+      TRAINING_DYNAMO_BACKEND='no'
+      CONFIG_BACKEND='json'
+      ```
+      Any settings not explicitly set will revert to default values.
+  - section: "5. Training Metrics Reporting"
+    content: |
+      By default, SimpleTuner reports metrics via Weights & Biases. To configure:
+      ```bash
+      wandb login
+      ```
+      Follow the instructions to enter your API key.  
+      If you wish to disable reporting, run your training with:
+      ```bash
+      --report-to=none
+      ```
+  - section: "6. Launching the Training Session"
+    content: |
+      Start your training session with:
+      ```bash
+      ./train.sh
+      ```
+      Logs will be written to `debug.log`.
 
-> ℹ️ You can use your own custom venv path by setting `export VENV_PATH=/path/to/.venv` in your `config/config.env` file.
+      > **Reminder:** If you used `configure.py`, no further configuration is needed. Otherwise, refer to the detailed tutorial for additional settings.
+  - section: "7. Running Unit Tests"
+    content: |
+      To ensure your installation is correct, execute:
+      ```bash
+      poetry run python -m unittest discover tests/
+      ```
+  - section: "8. Advanced: Managing Multiple Configurations"
+    content: |
+      For scenarios where you train multiple models or use various datasets, you can manage different configurations using environment variables.
 
-**Note:** We're currently installing the `release` branch here; the `main` branch may contain experimental features that might have better results or lower memory use.
+      - **Specify a Configuration Environment:**
+        ```bash
+        env ENV=default CONFIG_BACKEND=env bash train.sh
+        ```
+        - `ENV` (defaults to `default`) points to the `SimpleTuner/config/` directory.
+        - For an alternate environment (e.g., `pixart`), run:
+          ```bash
+          env ENV=pixart bash train.sh
+          ```
 
-Depending on your system, you will run one of 3 commands:
+      - **Choose a Configuration Backend:**
+        Set `CONFIG_BACKEND` to `env`, `json`, `toml`, or `cmd`. For example:
+        ```bash
+        env CONFIG_BACKEND=json bash train.sh
+        ```
 
-```bash
-# MacOS
-poetry install -C install/apple
+      - **Persisting Settings:**
+        Add the following to `config/config.env`:
+        ```env
+        ENV=default
+        CONFIG_BACKEND=json
+        ```
+  - section: "Summary"
+    content: |
+      This guide has walked you through setting up SimpleTuner on your Linux device for the AI-Headshot project, focusing on training the LORA of the flux model. From cloning the repository and setting up your environment, to installing dependencies, configuring the system, and launching training—the steps are designed to get you up and running efficiently.
 
-# Linux
-poetry install
-
-# Linux with ROCM
-poetry install -C install/rocm
-```
-
-#### NVIDIA Hopper / Blackwell follow-up steps
-
-Optionally, Hopper (or newer) equipment can make use of FlashAttention3 for improved inference and training performance when making use of `torch.compile`
-
-You'll need to run the following sequence of commands from your SimpleTuner directory, with your venv active:
-
-```bash
-git clone https://github.com/Dao-AILab/flash-attention
-pushd flash-attention
-  pushd hopper
-    python setup.py install
-  popd
-popd
-```
-
-> ⚠️ Managing the flash_attn build is poorly-supported in SimpleTuner, currently. This can break on updates, requiring you to re-run this build procedure manually from time-to-time.
-
-#### AMD ROCm follow-up steps
-
-The following must be executed for an AMD MI300X to be useable:
-
-```bash
-apt install amd-smi-lib
-pushd /opt/rocm/share/amd_smi
-  python3 -m pip install --upgrade pip
-  python3 -m pip install .
-popd
-```
-
-### All platforms
-
-- 2a. **Option One (Recommended)**: Run `configure.py`
-- 2b. **Option Two**: Copy `config/config.json.example` to `config/config.json` and then fill in the details.
-
-> ⚠️ For users located in countries where Hugging Face Hub is not readily accessible, you should add `HF_ENDPOINT=https://hf-mirror.com` to your `~/.bashrc` or `~/.zshrc` depending on which `$SHELL` your system uses.
-
-#### Multiple GPU training
-
-**Note**: For MultiGPU setup, you will have to set all of these variables in `config/config.env`
-
-```bash
-TRAINING_NUM_PROCESSES=1
-TRAINING_NUM_MACHINES=1
-TRAINING_DYNAMO_BACKEND='no'
-# this is auto-detected, and not necessary. but can be set explicitly.
-CONFIG_BACKEND='json'
-```
-
-Any missing values from your user config will fallback to the defaults.
-
-3. If you are using `--report_to='wandb'` (the default), the following will help you report your statistics:
-
-```bash
-wandb login
-```
-
-Follow the instructions that are printed, to locate your API key and configure it.
-
-Once that is done, any of your training sessions and validation data will be available on Weights & Biases.
-
-> ℹ️ If you would like to disable Weights & Biases or Tensorboard reporting entirely, use `--report-to=none`
-
-
-4. Launch the `train.sh` script; logs will be written to `debug.log`
-
-```bash
-./train.sh
-```
-
-> ⚠️ At this point, if you used `configure.py`, you are done! If not - these commands will work, but further configuration is required. See [the tutorial](/TUTORIAL.md) for more information.
-
-### Run unit tests
-
-To run unit tests to ensure that installation has completed successfully:
-
-```bash
-poetry run python -m unittest discover tests/
-```
-
-## Advanced: Multiple configuration environments
-
-For users who train multiple models or need to quickly switch between different datasets or settings, two environment variables are inspected at startup.
-
-To use them:
-
-```bash
-env ENV=default CONFIG_BACKEND=env bash train.sh
-```
-
-- `ENV` will default to `default`, which points to the typical `SimpleTuner/config/` directory that this guide helped you configure
-  - Using `ENV=pixart ./train.sh` would use `SimpleTuner/config/pixart` directory to find `config.env`
-- `CONFIG_BACKEND` will default to `env`, which uses the typical `config.env` file this guide helped you configure
-  - Supported options: `env`, `json`, `toml`, or `cmd` if you rely on running `train.py` manually
-  - Using `CONFIG_BACKEND=json ./train.sh` would search for `SimpleTuner/config/config.json` instead of `config.env`
-  - Similarly, `CONFIG_BACKEND=toml` will use `config.env`
-
-You can create `config/config.env` that contains one or both of these values:
-
-```bash
-ENV=default
-CONFIG_BACKEND=json
-```
-
-They will be remembered upon subsequent runs. Note that these can be added in addition to the multiGPU options described [above](#multiple-gpu-training).
+      For additional details or troubleshooting, refer to the [official SimpleTuner documentation](https://github.com/bghira/SimpleTuner).
