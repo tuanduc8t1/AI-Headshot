@@ -83,11 +83,7 @@ To automatically push your model to a remote repository after training, set thes
 "push_to_hub": true,
 "hub_model_name": "your-model-name"
 
-````markdown
-Before training, log in using:
-
-```bash
-huggingface-cli login
+Before training, log in using: huggingface-cli login
 ```
 
 To disable automatic checkpoint uploads, set:
