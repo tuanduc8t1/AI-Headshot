@@ -89,19 +89,3 @@ This document provides a simplified summary of the command-line options availabl
 
 - **`VENV_PATH`**  
   Custom path to your Python virtual environment (if not using the default `.venv`).
-
-## Example Command
-
-Below is an example command to train a LoRA model for AI-HEADSHOT using simplified settings:
-
-```bash
-python train.py \
-  --model_type lora \
-  --model_family flux \
-  --pretrained_model_name_or_path /path/to/model \
-  --lora_type standard \
-  --lora_rank 4 \
-  --lora_alpha 32 \
-  --num_train_epochs 10 \
-  --learning_rate 1e-4 \
-  --train_batch_size 4
