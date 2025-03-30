@@ -36,7 +36,12 @@ This project uses **SimpleTuner** to train **LoRA (Low-Rank Adaptation)** models
 | Apple M-series | 24 GB     | Works with M3 Max, slower training speeds   |
 
 ---
+## 📸 Workflow 
 
+I use ComfyUI to create the workflow of my inference
+![Workflow](assets/workflow.png)
+
+---
 ## 🚀 Start
 
 ### 1. Setup Environment and Install all required library
@@ -47,15 +52,15 @@ conda create -n simpletuner python=3.10 -y
 conda activate simpletuner
 pip install -r requirements.txt
 ```
-Read QUICKSTART.md for more infomations. 
+Read QUICKSTART.md for more infomations
 
 ### 2. Train a LoRA Model
 ```bash
 python configure.py
-# Setting parameters. Read OPTIONS.md for more infomations. 
+# Setting parameters. Read OPTIONS.md for more infomations 
 sh train.sh
 ```
-Read QUICKSTART.md for more informations.
+Read QUICKSTART.md for more informations
 
 ### 3. Run Inference with Gradio
 ```bash
