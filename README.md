@@ -37,7 +37,7 @@ This project uses **SimpleTuner** to train **LoRA (Low-Rank Adaptation)** models
 
 ---
 
-## 🚀 Quickstart
+## 🚀 Start
 
 ### 1. Setup Environment and Install all required library
 ```bash
