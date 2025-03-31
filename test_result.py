@@ -13,7 +13,7 @@ pipe = FluxPipeline.from_pretrained(
     torch_dtype=torch.float16
 )
 
-pipe.load_lora_weights("/workspace/SimpleTuner/output/models/checkpoint-200/pytorch_lora_weights.safetensors")
+pipe.load_lora_weights("Link to your trained LoRA")
 pipe = pipe.to("cuda")
 
 def gen_img(prompt, negative_prompt, width, height, num_steps, guidance_scale):
