@@ -52,7 +52,7 @@ conda create -n simpletuner python=3.10 -y
 conda activate simpletuner
 pip install -r requirements.txt
 ```
-Read QUICKSTART.md for more infomations
+Read QUICKSTART.md for more informations
 
 ### 2. Train a LoRA Model
 ```bash
