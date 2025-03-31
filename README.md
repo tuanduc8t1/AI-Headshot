@@ -47,20 +47,20 @@ I use ComfyUI to create the workflow of my inference<br><br>
 ### 1. Setup Environment and Install all required library
 ```bash
 git clone https://github.com/tuanduc8t1/AI-Headshot.git
-cd SimpleTuner
-conda create -n simpletuner python=3.10 -y
-conda activate simpletuner
+cd AI-Headshot
+conda create -n name_venv python=3.10 -y
+conda activate name_venv
 pip install -r requirements.txt
 ```
-Read QUICKSTART.md for more informations
+Read QUICKSTART.md for more information
 
 ### 2. Train a LoRA Model
 ```bash
 python configure.py
-# Setting parameters. Read OPTIONS.md for more infomations 
+# Setting parameters. Read OPTIONS.md for more information 
 sh train.sh
 ```
-Read QUICKSTART.md for more informations
+Read QUICKSTART.md for more information
 
 ### 3. Run Inference with Gradio
 ```bash
