@@ -13,7 +13,7 @@ pipe = FluxPipeline.from_pretrained(
     torch_dtype=torch.float16
 )
 
-pipe.load_lora_weights("Link to your trained LoRA")
+pipe.load_lora_weights("Link to your trained LoRA, change this before run test_result.py")
 pipe = pipe.to("cuda")
 
 def gen_img(prompt, negative_prompt, width, height, num_steps, guidance_scale):
