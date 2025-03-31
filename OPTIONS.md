@@ -1,4 +1,4 @@
-# AI-HEADSHOT LoRA Training Options
+# LoRA Training Parameters
 
 This document provides a simplified summary of the command-line options available in SimpleTuner's `train.py` script. These options have been tailored for training a LoRA model for the AI-HEADSHOT project.
 
