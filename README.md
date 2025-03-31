@@ -51,13 +51,15 @@ cd AI-Headshot
 conda create -n name_venv python=3.10 -y
 conda activate name_venv
 pip install -r requirements.txt
+...
 ```
 Read QUICKSTART.md for more information
 
 ### 2. Train a LoRA Model
 ```bash
 python configure.py
-# Setting parameters. Read OPTIONS.md for more information 
+# Setting parameters. Read OPTIONS.md for more information
+...
 sh train.sh
 ```
 Read QUICKSTART.md for more information
