@@ -7,7 +7,6 @@ from diffusers import FluxPipeline
 import torch
 import numpy as np
 from PIL import Image
-from gfpgan import GFPGANer
 
 gfpganer = GFPGANer(
     model_path="/workspace/SimpleTuner/GFPGANv1.4.pth",
