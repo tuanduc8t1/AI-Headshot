@@ -17,8 +17,7 @@ scikit-image
 peft
 wandb
 sentencepiece
-gfpgan
-realesrgan
+torchao
 basicsr
 facexlib
 opencv-python
