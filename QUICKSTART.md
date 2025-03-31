@@ -1,12 +1,12 @@
 # Quickstart
 
 ### Installation
-1. Clone the SimpleTuner repository and set up the python venv:
+1. Clone the repository and set up the python venv:
 
 ```bash
 git clone https://github.com/tuanduc8t1/AI-Headshot.git
 
-cd SimpleTuner
+cd AI-Headshot
 
 # if python --version shows 3.11 you can just also use the 'python' command here.
 python3.11 -m venv .venv
@@ -38,7 +38,7 @@ poetry install -C install/rocm
 
 Optionally, Hopper (or newer) equipment can make use of FlashAttention3 for improved inference and training performance when making use of `torch.compile`
 
-You'll need to run the following sequence of commands from your SimpleTuner directory, with your venv active:
+You'll need to run the following sequence of commands from your directory, with your venv active:
 
 ```bash
 git clone https://github.com/Dao-AILab/flash-attention
@@ -49,7 +49,7 @@ pushd flash-attention
 popd
 ```
 
-> ⚠️ Managing the flash_attn build is poorly-supported in SimpleTuner, currently. This can break on updates, requiring you to re-run this build procedure manually from time-to-time.
+> ⚠️ Managing the flash_attn build is poorly-supported, currently. This can break on updates, requiring you to re-run this build procedure manually from time-to-time.
 
 #### AMD ROCm follow-up steps
 
