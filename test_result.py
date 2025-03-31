@@ -8,14 +8,6 @@ import torch
 import numpy as np
 from PIL import Image
 
-gfpganer = GFPGANer(
-    model_path="/workspace/SimpleTuner/GFPGANv1.4.pth",
-    upscale=2,
-    arch='clean',
-    channel_multiplier=2,
-    device='cuda'
-)
-
 pipe = FluxPipeline.from_pretrained(
     "black-forest-labs/FLUX.1-dev",
     torch_dtype=torch.float16
