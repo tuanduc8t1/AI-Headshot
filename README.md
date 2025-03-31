@@ -4,7 +4,7 @@
 
 This project uses **SimpleTuner** to train **LoRA (Low-Rank Adaptation)** models and includes a **Gradio-based web interface** for running inference with the trained models.
 
----
+--- 
 
 ## 📌 Project Highlights
 
