@@ -13,6 +13,8 @@ python3.11 -m venv .venv
 
 source .venv/bin/activate
 
+pip install -r requirements.txt
+
 pip install -U poetry pip
 
 # Necessary on some systems to prevent it from deciding it knows better than us.
