@@ -66,7 +66,7 @@ Read QUICKSTART.md for more information
 python test_result.py
 ```
 This will launch a web interface where you can generate images using your trained LoRA model<br><br>
-![Interface](assets/interface.png)
+![Interface](assets/itface.png)
 
 ---
 
