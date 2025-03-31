@@ -48,9 +48,6 @@ I use ComfyUI to create the workflow of my inference<br><br>
 ```bash
 git clone https://github.com/tuanduc8t1/AI-Headshot.git
 cd AI-Headshot
-conda create -n name_venv python=3.10 -y
-conda activate name_venv
-pip install -r requirements.txt
 ...
 ```
 Read QUICKSTART.md for more information
